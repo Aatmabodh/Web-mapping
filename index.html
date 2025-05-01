@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aakriti Sharma - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #98FFCC; /* Mint background */
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        header {
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #fff;
+            color: #2c3e50;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle:hover {
+            background: #3498db;
+            color: #fff;
+        }
+
+        nav {
+            background: #2c3e50;
+            padding: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #98FFCC;
+        }
+
+        section {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode section {
+            background: #2c2c2c;
+        }
+
+        section h2 {
+            color: #2c3e50;
+            background: linear-gradient(to right, #3498db, #98FFCC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        body.dark-mode section h2 {
+            color: #e0e0e0;
+            -webkit-text-fill-color: inherit;
+        }
+
+        .about, .education, .skills, .projects, .interests, .contact {
+            margin-bottom: 2rem;
+        }
+
+        .about img {
+            max-width: 150px;
+            border-radius: 50%;
+            float: left;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+            border: 3px solid #3498db;
+        }
+
+        .skills ul, .interests ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skills li, .interests li {
+            background: #e8f1ff;
+            padding: 0.75rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        body.dark-mode .skills li, body.dark-mode .interests li {
+            background: #3a3a3a;
+        }
+
+        .skills li:hover, .interests li:hover {
+            transform: translateY(-5px);
+            background: #d1e4ff;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .projects .project {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        body.dark-mode .projects .project {
+            background: #3a3a3a;
+        }
+
+        .projects .project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .projects h3 {
+            color: #3498db;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact ul {
+            list-style: none;
+        }
+
+        .contact li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #3498db;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 50%;
+            text-decoration: none;
+            display: none;
+            transition: opacity 0.3s;
+        }
+
+        .back-to-top:hover {
+            background: #2c3e50;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .about img {
+                float: none;
+                display: block;
+                margin: 0 auto 1rem;
+                max-width: 120px;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Aakriti Sharma</h1>
+        <p>Geomatics Engineering Student | Geospatial Technology Enthusiast</p>
+        <button class="theme-toggle" onclick="toggleTheme()"> Dark Mode</button>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about" aria-label="About section">About</a></li>
+            <li><a href="#education" aria-label="Education section">Education</a></li>
+            <li><a href="#skills" aria-label="Skills section">Skills</a></li>
+            <li><a href="#projects" aria-label="Projects section">Projects</a></li>
+            <li><a href="#interests" aria-label="Interests section">Interests</a></li>
+            <li><a href="#contact" aria-label="Contact section">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about" class="about">
+        <h2>👩‍💻 About Me</h2>
+        <img src="profile.jpg" alt="Aakriti Sharma">
+        <p>I’m Aakriti Sharma, a fourth-year Geomatics Engineering student at Kathmandu University, Dhulikhel. I am passionate about using geospatial technologies to solve real-world problems. While I am still learning, I have worked on academic projects and practical coursework that helped me explore different areas of geomatics such as GIS, remote sensing, satellite geodesy, and programming for geospatial applications. I enjoy applying technical skills to build useful, user-friendly solutions.</p>
+        
+    </section>
+
+    <section id="education" class="education">
+        <h2>🎓 Education</h2>
+        <h3>Bachelor in Geomatics Engineering</h3>
+        <p>Kathmandu University, Dhulikhel</p>
+        <p><strong>Relevant Coursework:</strong> Remote Sensing, WebGIS, Spatial Data Infrastructure, GIS, Photogrammetry, Python, Java, Precise Point Positioning, Database Management System</p>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>🛠️ Skills, Software & Tools</h2>
+        <ul>
+            <li><strong>GIS Software:</strong> ArcGIS, QGIS</li>
+            <li><strong>Programming:</strong> HTML, CSS, JavaScript, Python, Java</li>
+            <li><strong>Surveying Tools:</strong> Total Station, UAV</li>
+            <li><strong>Remote Sensing Tools:</strong> ENVI, Pix4D, Google Earth Engine</li>
+            <li><strong>Database:</strong> PostgreSQL</li>
+            <li><strong>Others:</strong> Web Mapping, Spatial Analysis</li>
+            <li><strong>Soft Skills:</strong> Problem-Solving, Critical Thinking, Adaptability, Quick Learning</li>
+        </ul>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>📁 Projects</h2>
+        <div class="project">
+            <h3>Landslide Susceptibility Mapping using AHP Method</h3>
+            <p>Used GIS-based AHP technique to identify landslide-prone areas by analyzing terrain and environmental factors.</p>
+        </div>
+        <div class="project">
+            <h3>Air Pollution Monitoring and Analysis in GIS</h3>
+            <p>Mapped and analyzed pollution levels in urban areas and identified potential causes using spatial datasets.</p>
+        </div>
+        <div class="project">
+            <h3>Land Use Land Cover Mapping of Banke District</h3>
+            <p>Developed LULC maps using satellite images and ArcGIS tools to study landscape changes.</p>
+        </div>
+        <div class="project">
+            <h3>Six Orbital Elements Calculator (Java)</h3>
+            <p>Created a simple tool to calculate six orbital parameters using Java, based on satellite geodesy concepts.</p>
+        </div>
+    </section>
+
+    <section id="interests" class="interests">
+        <h2>🌱 Fields of Interest</h2>
+        <ul>
+            <li>Satellite Geodesy and GNSS Applications</li>
+            <li>Web GIS and Spatial Data Visualization</li>
+            <li>Remote Sensing and Earth Observation</li>
+            <li>Geospatial Applications in Environmental Monitoring</li>
+            <li>Artificial Intelligence and Machine Learning in GIS</li>
+            <li>Space-based Technologies and Satellite-related Research</li>
+        </ul>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>📬 Contact</h2>
+        <ul>
+            <li>📧 <strong>Email:</strong> <a href="mailto:aakritisharma7831@gmail.com">aakritisharma7831@gmail.com</a></li>
+            <li>📞 <strong>Phone:</strong> 9823589796</li>
+            <li>📍 <strong>Address:</strong> Kathmandu</li>
+            <li>🔗 <strong>LinkedIn:</strong> <a href=https://www.linkedin.com/in/aakriti-sharma-a8b392346/ target="_blank">linkedin.com/in/your-linkedin</a></li>
+            <li>💻 <strong>GitHub:</strong> <a href=https://github.com/Aatmabodh/Web-mapping- target="_blank">github.com/your-github</a></li>
+        </ul>
+        
+    </section>
+
+    <a href="#top" class="back-to-top" aria-label="Back to top">↑</a>
+
+    <footer>
+        <p>© 2025 Aakriti Sharma. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('href').substring(1);
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Back to top button visibility
+        const backToTop = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+
+        // Dark mode
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        }
+
+        // Load theme from localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Animation on scroll
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.5s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
